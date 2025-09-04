@@ -1,0 +1,49 @@
+{
+  "name": "selenium-jest-cucumber-automation",
+  "version": "1.0.0",
+  "description": "E2E automation framework using Selenium WebDriver, Jest, and Cucumber with Page Object Model",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test:e2e": "cucumber-js --require src/config/cucumber.js",
+    "test:e2e:smoke": "cucumber-js --require src/config/cucumber.js --tags @smoke",
+    "test:e2e:regression": "cucumber-js --require src/config/cucumber.js --tags @regression",
+    "test:unit": "set NODE_OPTIONS=--experimental-vm-modules && jest --config jest.config.cjs",
+    "test:all": "npm run test:unit && npm run test:e2e && npm run report:cucumber",
+    "report:cucumber": "node tools/cucumber-html-report.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "selenium",
+    "webdriver",
+    "cucumber",
+    "jest",
+    "e2e",
+    "automation",
+    "testing",
+    "bdd"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@cucumber/cucumber": "^12.2.0",
+    "dotenv": "^17.2.2",
+    "selenium-webdriver": "^4.35.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.28.3",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@faker-js/faker": "^10.0.0",
+    "eslint": "8.57.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.29.1",
+    "husky": "^9.1.7",
+    "jest": "^30.1.3",
+    "jest-html-reporters": "^3.1.7",
+    "multiple-cucumber-html-reporter": "^3.9.3",
+    "tslib": "^2.6.3"
+  }
+}

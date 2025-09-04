@@ -1,0 +1,18 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+    "javascript"
+  ],
+  "files.associations": {
+    "*.feature": "cucumber"
+  },
+  "cucumber.features": [
+    "src/tests/features/**/*.feature"
+  ],
+  "cucumber.glue": [
+    "src/tests/step-definitions/**/*.js"
+  ]
+}
