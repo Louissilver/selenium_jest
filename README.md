@@ -1,6 +1,46 @@
 # Selenium + Jest + Cucumber Automation Framework
 
+[![CI](https://github.com/Louissilver/selenium_jest/actions/workflows/ci.yml/badge.svg)](https://github.com/Louissilver/selenium_jest/actions/workflows/ci.yml)
+[![PR Validation](https://github.com/Louissilver/selenium_jest/actions/workflows/pr-validation.yml/badge.svg)](https://github.com/Louissilver/selenium_jest/actions/workflows/pr-validation.yml)
+[![Release](https://github.com/Louissilver/selenium_jest/actions/workflows/release.yml/badge.svg)](https://github.com/Louissilver/selenium_jest/actions/workflows/release.yml)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D%2020.x-brightgreen)](https://nodejs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Selenium](https://img.shields.io/badge/Selenium-4.35.0-green)](https://www.selenium.dev/)
+[![Jest](https://img.shields.io/badge/Jest-30.1.3-red)](https://jestjs.io/)
+[![Cucumber](https://img.shields.io/badge/Cucumber-12.2.0-brightgreen)](https://cucumber.io/)
+
 A comprehensive E2E automation framework built with Selenium WebDriver, Jest, and Cucumber.js following the Page Object Model (POM) pattern.
+
+## 📋 Table of Contents
+
+- [🚀 Features](#-features)
+- [📁 Project Structure](#-project-structure)
+- [🛠️ Setup](#️-setup)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [⚙️ Configuration](#️-configuration)
+- [🧪 Running Tests](#-running-tests)
+  - [E2E Tests (Cucumber)](#e2e-tests-cucumber)
+  - [Unit Tests (Jest)](#unit-tests-jest)
+  - [Linting](#linting)
+- [📊 Reports](#-reports)
+- [🏗️ Architecture](#️-architecture)
+  - [Page Object Model](#page-object-model)
+  - [Configuration](#configuration)
+  - [Helpers & Utilities](#helpers--utilities)
+- [🚦 CI/CD Pipeline (GitHub Actions)](#-cicd-pipeline-github-actions)
+  - [🔄 Continuous Integration](#-continuous-integration-ciyml)
+  - [🔍 Pull Request Validation](#-pull-request-validation-pr-validationyml)
+  - [🚀 Release Pipeline](#-release-pipeline-releaseyml)
+  - [📊 CI/CD Features](#-cicd-features)
+  - [🏃‍♂️ Running Tests by Tags](#️-running-tests-by-tags)
+  - [🔧 CI Configuration](#-ci-configuration)
+- [🔧 Development](#-development)
+  - [Adding New Tests](#adding-new-tests)
+  - [Code Quality](#code-quality)
+- [📝 Example Test](#-example-test)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
 ## 🚀 Features
 
@@ -157,13 +197,66 @@ npm run lint:fix
 - Conventional commit messages
 - Automatic screenshot capture on failures
 
-## 🚦 CI/CD Ready
+## 🚦 CI/CD Pipeline (GitHub Actions)
 
-The framework is configured for CI/CD with:
-- Headless browser execution
-- JSON and HTML report generation
-- Screenshot artifacts on failures
-- Exit codes for build status
+The framework includes comprehensive GitHub Actions workflows for automated testing and deployment:
+
+### 🔄 Continuous Integration (`ci.yml`)
+Triggered on push to `main` and `develop` branches:
+
+- **Linting & Quality**: ESLint validation with Airbnb configuration
+- **Commit Validation**: Commitlint checks for conventional commit messages
+- **Unit Tests**: Jest tests with coverage reporting and HTML output
+- **E2E Tests**: Cucumber + Selenium tests in headless Chrome
+- **Artifacts**: Automatic upload of test reports and failure screenshots
+- **Environment**: Node.js 20.x with Chrome/ChromeDriver setup
+
+### 🔍 Pull Request Validation (`pr-validation.yml`)
+Triggered on pull requests to `main` and `develop`:
+
+- **Code Quality**: ESLint checks with inline PR comments
+- **Commit Messages**: Commitlint validation for PR commits
+- **Unit Testing**: Fast Jest execution for quick feedback
+- **PR Comments**: Automated status updates on PR with test results
+
+### 🚀 Release Pipeline (`release.yml`)
+Triggered on Git tags (e.g., `v1.0.0`):
+
+- **Full Test Suite**: Complete E2E and unit test execution
+- **Release Notes**: Automatic generation from commit history
+- **GitHub Release**: Creates release with artifacts and reports
+- **Artifact Retention**: 90-day retention for release reports
+
+### 📊 CI/CD Features
+
+- **Parallel Execution**: Unit and E2E tests run in parallel for faster feedback
+- **Headless Testing**: Chrome headless mode for reliable CI execution
+- **Artifact Management**: Test reports, screenshots, and logs preserved
+- **Multi-Environment**: Support for different test environments via secrets
+- **Failure Handling**: Screenshot capture and detailed error reporting
+- **Cache Optimization**: Node modules and browser binaries cached
+
+### 🏃‍♂️ Running Tests by Tags
+
+```bash
+# Smoke tests (quick validation)
+npm run test:e2e:smoke
+
+# Regression tests (comprehensive)
+npm run test:e2e:regression
+
+# Critical path tests
+npm run test:e2e -- --tags "@critical"
+```
+
+### 🔧 CI Configuration
+
+The workflows are configured for:
+- **Node.js**: LTS 20.x for stability
+- **Browsers**: Chrome with ChromeDriver auto-installation
+- **Timeouts**: 60-second step timeout, 30-second Jest timeout
+- **Reporting**: JSON and HTML formats with artifact upload
+- **Security**: Environment variables and secrets management
 
 ## 📝 Example Test
 
