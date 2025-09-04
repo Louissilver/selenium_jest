@@ -1,4 +1,4 @@
-import { Builder, Capabilities } from 'selenium-webdriver';
+import { Builder } from 'selenium-webdriver';
 import chrome from 'selenium-webdriver/chrome.js';
 import firefox from 'selenium-webdriver/firefox.js';
 import edge from 'selenium-webdriver/edge.js';
@@ -10,7 +10,6 @@ import { config } from './env.js';
  */
 export async function createDriver() {
   let driver;
-  const capabilities = new Capabilities();
 
   switch (config.browser.toLowerCase()) {
   case 'chrome': {
@@ -24,7 +23,7 @@ export async function createDriver() {
       '--disable-gpu',
       '--window-size=1920,1080',
     );
-      
+
     driver = await new Builder()
       .forBrowser('chrome')
       .setChromeOptions(chromeOptions)
@@ -37,7 +36,7 @@ export async function createDriver() {
       firefoxOptions.addArguments('--headless');
     }
     firefoxOptions.addArguments('--width=1920', '--height=1080');
-      
+
     driver = await new Builder()
       .forBrowser('firefox')
       .setFirefoxOptions(firefoxOptions)
@@ -55,7 +54,7 @@ export async function createDriver() {
       '--disable-gpu',
       '--window-size=1920,1080',
     );
-      
+
     driver = await new Builder()
       .forBrowser('MicrosoftEdge')
       .setEdgeOptions(edgeOptions)

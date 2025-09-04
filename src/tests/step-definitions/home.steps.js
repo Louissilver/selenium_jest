@@ -1,17 +1,14 @@
 import { Given, When, Then, setDefaultTimeout } from '@cucumber/cucumber';
 import { HomePage } from '../../pages/home.page.js';
 import { AssertHelper } from '../../helpers/assert.js';
-import { WaitHelper } from '../../helpers/wait.js';
 
 // Set default timeout for all steps to 60 seconds
 setDefaultTimeout(60000);
 
 let homePage;
-let waitHelper;
 
 Given('I am on the home page', async function () {
   homePage = new HomePage(this.driver);
-  waitHelper = new WaitHelper(this.driver);
   await homePage.open();
 });
 
@@ -52,7 +49,7 @@ Then('I should see at least one product card', async function () {
 Then('each product card should have a title', async function () {
   const productCards = await homePage.getProductCards();
   AssertHelper.assertGreaterThan(productCards.length, 0, 'Should have at least one product card');
-  
+
   // Check first product card has a title (as a representative check)
   const firstProductInfo = await homePage.getFirstProductInfo();
   AssertHelper.assertNotNull(firstProductInfo.title, 'First product should have a title');
@@ -72,7 +69,7 @@ Then('I should see the footer', async function () {
 Then('I should be able to get the first product information', async function () {
   const firstProductInfo = await homePage.getFirstProductInfo();
   AssertHelper.assertNotNull(firstProductInfo, 'Should be able to get first product information');
-  
+
   // Store product info for next steps
   this.firstProductInfo = firstProductInfo;
 });
@@ -86,11 +83,11 @@ Then('the first product should have a title', async function () {
 Then('the first product should have a price or {string}', async function (fallbackValue) {
   const productInfo = this.firstProductInfo || await homePage.getFirstProductInfo();
   AssertHelper.assertNotNull(productInfo.price, 'First product should have a price field');
-  
+
   // Price should either be a valid price string or the fallback value (e.g., "N/A")
   const hasValidPrice = productInfo.price !== fallbackValue && productInfo.price.length > 0;
   const hasFallbackValue = productInfo.price === fallbackValue;
-  
+
   AssertHelper.assertTrue(
     hasValidPrice || hasFallbackValue,
     `Product price should be either a valid price or "${fallbackValue}". Got: "${productInfo.price}"`

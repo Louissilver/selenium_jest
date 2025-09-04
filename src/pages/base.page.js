@@ -1,4 +1,4 @@
-import { until, WebDriver } from 'selenium-webdriver';
+import { until } from 'selenium-webdriver';
 import { config } from '../config/env.js';
 
 /**

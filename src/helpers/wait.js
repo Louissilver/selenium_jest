@@ -1,5 +1,3 @@
-import { until } from 'selenium-webdriver';
-
 /**
  * Custom wait helper functions for enhanced waiting capabilities
  */
